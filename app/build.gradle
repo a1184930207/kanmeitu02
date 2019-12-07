@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion var
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.ixuea.courses.kanmeitu2"
         minSdkVersion 15
-        targetSdkVersion 29
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -26,4 +26,33 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //RecyclerView列表
+//implementation 'com.android.support:recyclerview-v7:28.0.0'
+
+//Android X依赖
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha03'
+
+//图片加载框架
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+//请求网络相关
+//okhttp
+    implementation("com.squareup.okhttp3:okhttp:4.2.1")
+
+//retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+
+//gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+//rxjava
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+//end 请求网络相关
+
+//可以手势缩放图片
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 }
