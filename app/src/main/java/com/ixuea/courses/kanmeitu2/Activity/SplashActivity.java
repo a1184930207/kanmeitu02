@@ -1,5 +1,6 @@
 package com.ixuea.courses.kanmeitu2.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -30,8 +31,8 @@ public class SplashActivity extends AppCompatActivity {
     };
 
     private void next() {
-        // Intent intent = new Intent(this, LoginActivity.class);
-        // startActivity(intent);
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
 
         //关闭当前界面
         finish();
