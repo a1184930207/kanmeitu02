@@ -12,15 +12,12 @@ import com.ixuea.courses.kanmeitu2.MainActivity;
 import com.ixuea.courses.kanmeitu2.R;
 import com.ixuea.courses.kanmeitu2.util.Constants;
 import com.ixuea.courses.kanmeitu2.util.RegexUtil;
-import com.ixuea.courses.kanmeitu2.util.SharedPreferencesUtil;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private EditText et_username;
     private EditText et_password;
-    private SharedPreferencesUtil sp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +30,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         bt_login.setOnClickListener(this);
 
-        sp = SharedPreferencesUtil.getInstance(getApplicationContext());
+
     }
 
     @Override

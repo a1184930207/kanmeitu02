@@ -4,21 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.ixuea.courses.kanmeitu2.Activity.BaseActivity;
 import com.ixuea.courses.kanmeitu2.Activity.LoginActivity;
-import com.ixuea.courses.kanmeitu2.util.SharedPreferencesUtil;
 
-import androidx.appcompat.app.AppCompatActivity;
+public class MainActivity extends BaseActivity {
 
-public class MainActivity extends AppCompatActivity {
 
-    private SharedPreferencesUtil sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sp = SharedPreferencesUtil.getInstance(getApplicationContext());
     }
 
 

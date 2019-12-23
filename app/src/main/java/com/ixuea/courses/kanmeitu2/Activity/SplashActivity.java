@@ -8,9 +8,6 @@ import android.view.WindowManager;
 
 import com.ixuea.courses.kanmeitu2.MainActivity;
 import com.ixuea.courses.kanmeitu2.R;
-import com.ixuea.courses.kanmeitu2.util.SharedPreferencesUtil;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 启动页面
@@ -22,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     private Handler handler = new Handler() {
         @Override
@@ -31,7 +28,6 @@ public class SplashActivity extends AppCompatActivity {
             next();
         }
     };
-    private SharedPreferencesUtil sp;
 
     private void next() {
         Intent intent = null;
@@ -54,7 +50,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        sp = SharedPreferencesUtil.getInstance(getApplicationContext());
 
         //去除状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
