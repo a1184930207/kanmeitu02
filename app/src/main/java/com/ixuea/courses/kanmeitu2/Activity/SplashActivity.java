@@ -6,7 +6,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.WindowManager;
 
+import com.ixuea.courses.kanmeitu2.MainActivity;
 import com.ixuea.courses.kanmeitu2.R;
+import com.ixuea.courses.kanmeitu2.util.SharedPreferencesUtil;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,9 +31,18 @@ public class SplashActivity extends AppCompatActivity {
             next();
         }
     };
+    private SharedPreferencesUtil sp;
 
     private void next() {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = null;
+        if (sp.isLogin()) {
+            //已经登录，跳转到首页
+            intent = new Intent(this, MainActivity.class);
+        } else {
+            //否则跳转到登录界面
+            intent = new Intent(this, LoginActivity.class);
+        }
+
         startActivity(intent);
 
         //关闭当前界面
@@ -42,6 +53,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        sp = SharedPreferencesUtil.getInstance(getApplicationContext());
 
         //去除状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,

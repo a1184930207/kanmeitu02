@@ -12,6 +12,7 @@ import com.ixuea.courses.kanmeitu2.MainActivity;
 import com.ixuea.courses.kanmeitu2.R;
 import com.ixuea.courses.kanmeitu2.util.Constants;
 import com.ixuea.courses.kanmeitu2.util.RegexUtil;
+import com.ixuea.courses.kanmeitu2.util.SharedPreferencesUtil;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +20,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private EditText et_username;
     private EditText et_password;
+    private SharedPreferencesUtil sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Button bt_login = findViewById(R.id.bt_login);
 
         bt_login.setOnClickListener(this);
+
+        sp = SharedPreferencesUtil.getInstance(getApplicationContext());
     }
 
     @Override
@@ -74,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //我们这里就简单实现，将密码和用户名都写到本地了
         if ((Constants.USERNAME.equals(username) && Constants.PASSWORD.equals(password))) {
             //TODO 通常软件的做法是，这里登录完成后保存一个标致，下次就不用在登录了
-            //我们这里就不讲解这么多了，因为涉及到的知识太多了
+            sp.setLogin(true);
 
             //登录成功，进入首页
             Intent intent = new Intent(this, MainActivity.class);
