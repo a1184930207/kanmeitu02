@@ -35,8 +35,9 @@ public class MainActivity extends BaseActivity {
 
         //设置数据
         ArrayList<Image> datas = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            datas.add(new Image(""));
+        for (int i = 1; i < 100; i++) {
+            //图片来自http://image.baidu.com
+            datas.add(new Image(String.format("http://dev-courses-quick.oss-cn-beijing.aliyuncs.com/%d.jpg", i)));
         }
         ImageAdapter adapter = new ImageAdapter(this);
         rv.setAdapter(adapter);

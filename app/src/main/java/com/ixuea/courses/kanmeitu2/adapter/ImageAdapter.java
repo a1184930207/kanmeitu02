@@ -1,12 +1,15 @@
 package com.ixuea.courses.kanmeitu2.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.ixuea.courses.kanmeitu2.R;
 import com.ixuea.courses.kanmeitu2.domain.Image;
+import com.ixuea.courses.kanmeitu2.util.ImageUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,12 +53,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        private final ImageView iv;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            iv = itemView.findViewById(R.id.iv);
         }
 
         public void bindData(Image data) {
-
+            ImageUtil.show((Activity) context, iv, data.getUri());
         }
     }
 }
