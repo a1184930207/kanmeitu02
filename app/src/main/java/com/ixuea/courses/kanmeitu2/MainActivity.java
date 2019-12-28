@@ -7,16 +7,23 @@ import android.view.View;
 import com.ixuea.courses.kanmeitu2.Activity.BaseActivity;
 import com.ixuea.courses.kanmeitu2.Activity.LoginActivity;
 import com.ixuea.courses.kanmeitu2.adapter.ImageAdapter;
+import com.ixuea.courses.kanmeitu2.api.Api;
 import com.ixuea.courses.kanmeitu2.domain.Image;
+import com.ixuea.courses.kanmeitu2.domain.response.ListResponse;
 
 import java.util.ArrayList;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity {
 
 
+    private ImageAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +46,47 @@ public class MainActivity extends BaseActivity {
             //图片来自http://image.baidu.com
             datas.add(new Image(String.format("http://dev-courses-quick.oss-cn-beijing.aliyuncs.com/%d.jpg", i)));
         }
-        ImageAdapter adapter = new ImageAdapter(this);
+        adapter = new ImageAdapter(this);
         rv.setAdapter(adapter);
         adapter.setDatas(datas);
+        fetchData();
 
+    }
+
+    private void fetchData() {
+        //这里涉及到很多知识，可以够讲几门课程了
+        //在这里大家只需简单理解，这样写就能请求到数据就行了
+        Api
+                .getInstance()
+                .images()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ListResponse<Image>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ListResponse<Image> imageListResponse) {
+                        //当数据请求完毕后，他会解析成对象，并返回给我们
+                        //真实项目中还会进行一系列的错误处理
+                        adapter.setDatas(imageListResponse.getData());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //真实项目中会将错误，提示给用户
+                        //同时写到日志
+                        e.printStackTrace();
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
 
@@ -61,4 +105,5 @@ public class MainActivity extends BaseActivity {
 
         finish();
     }
+
 }
